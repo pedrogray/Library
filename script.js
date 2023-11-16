@@ -43,15 +43,23 @@ function addBookToLibrary() {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     newBook.data = myLibrary.indexOf(newBook)
-    return console.log(newBook.data)
+    return newBook.data;
 }
 
 function displayBook() {
     body.innerHTML=''
     ;myLibrary.forEach((book) => {
         para = document.createElement("p");
-        para.textContent = title + ", written by " + author + ", " + "pages, " + read;
+        para.textContent = book.title + ", written by " + book.author + ", " + "pages, " + book.read;
+        deleteButton = document.createElement("button");
+        deleteButton.textContent= "delete";
         body.appendChild(para);
+        body.appendChild(deleteButton);
+        deleteButton.addEventListener("click", function() {
+            myLibrary.splice(book.data, 1);
+            displayBook()
+        })
     }
     )
 }
+
