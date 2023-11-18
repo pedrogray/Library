@@ -5,7 +5,7 @@ const errorMessagesDiv = document.querySelector(".errorMessages")
 const authorField = document.querySelector("#author")
 const titleField = document.querySelector("#title")
 const pagesField = document.querySelector("#pages")
-const readStatusField = document.querySelector("#readStatus")
+const readButtons = document.querySelectorAll("#readStatus")
 const submitButton = document.querySelector("#submit")
 
 
@@ -25,11 +25,11 @@ submitButton.addEventListener("click", function() {
     displayBook()}
 })
 
-function Book (title, author, pages, read) {
+function Book (title, author, pages, readStatus) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.readStatus = readStatus;
     this.info = function () {
         return title + ", " + author + ", " + pages + " pages, " + read;
     }
@@ -39,27 +39,33 @@ function addBookToLibrary() {
     title = titleField.value;
     author = authorField.value;
     pages = pagesField.value;
-    read = readStatusField.value;
-    let newBook = new Book(title, author, pages, read);
+    readStatus= document.querySelector('[type=radio]:checked').value;
+    console.log(readStatus)
+    let newBook = new Book(title, author, pages, readStatus);
     myLibrary.push(newBook);
     newBook.data = myLibrary.indexOf(newBook)
     return newBook.data;
 }
 
-function displayBook() {
+    function displayBook() {
     body.innerHTML=''
     ;myLibrary.forEach((book) => {
-        para = document.createElement("p");
-        para.textContent = book.title + ", written by " + book.author + ", " + "pages, " + book.read;
-        deleteButton = document.createElement("button");
-        deleteButton.textContent= "delete";
-        body.appendChild(para);
-        body.appendChild(deleteButton);
-        deleteButton.addEventListener("click", function() {
-            myLibrary.splice(book.data, 1);
-            displayBook()
-        })
-    }
-    )
+    let para = document.createElement("p");
+    para.setAttribute("id", book.data);
+    console.log (para);
+    para.textContent = book.title + ", written by " + book.author + ", " + "pages, " + book.readStatus;
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent= "delete";
+    body.appendChild(para);
+    body.appendChild(deleteButton);
+    deleteButton.addEventListener("click", function() {
+    myLibrary.splice(book.data, 1);
+    para.remove()
+    deleteButton.remove()
+      })
+   }
+   )
 }
+
+
 
