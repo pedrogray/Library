@@ -55,17 +55,33 @@ function addBookToLibrary() {
     console.log (para);
     para.textContent = book.title + ", written by " + book.author + ", " + "pages, " + book.readStatus;
     let deleteButton = document.createElement("button");
+    let toggleButton = document.createElement("button");
     deleteButton.textContent= "delete";
+    toggleButton.textContent="toggle read"
     body.appendChild(para);
     body.appendChild(deleteButton);
+    body.appendChild(toggleButton)
     deleteButton.addEventListener("click", function() {
-    myLibrary.splice(book.data, 1);
-    para.remove()
-    deleteButton.remove()
+        myLibrary.splice("id", 1);
+        para.remove()
+        deleteButton.remove()
+        toggleButton.remove()
+        console.log(myLibrary)
       })
+    toggleButton.addEventListener("click", function(){
+        book.toggleRead()
+    })
    }
    )
 }
 
 
 
+Book.prototype.toggleRead = function () {
+    if (this.readStatus == 'read') {this.readStatus = 'not read';
+displayBook()
+console.log(this.readStatus)}
+    else if (this.readStatus == 'not read') {this.readStatus = 'read'
+displayBook()
+console.log(this.readStatus)};
+}
