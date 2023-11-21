@@ -1,5 +1,5 @@
 const myLibrary = [];
-const body = document.querySelector(".container")
+const body = document.querySelector(".content")
 const form = document.querySelector("form")
 const errorMessagesDiv = document.querySelector(".errorMessages")
 const authorField = document.querySelector("#author")
@@ -85,3 +85,14 @@ console.log(this.readStatus)}
 displayBook()
 console.log(this.readStatus)};
 }
+
+
+const addBookButton = document.querySelector(".addButton")
+addBookButton.addEventListener("click", function(){ 
+    form.style.display = "flex"
+})
+
+const closeButton = document.querySelector(".close")
+closeButton.addEventListener("click", function() {
+    form.style.display="none";
+})

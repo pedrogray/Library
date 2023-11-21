@@ -22,10 +22,6 @@ body {
     grid-template-rows: 0.3fr 3fr;
 }
 
-form {
-    display: none;
-}
-
 h1 {
 display:flex;
 justify-content: left;
@@ -62,4 +58,36 @@ font-size: 50px;
     display:grid;
     grid-column: 2/3;
     grid-row: 2/3;
+    gap:30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+    display:flex;
+    width:250px;
+    height:250px;
+    margin:50px;
+    justify-content: center;
+    align-items: center;
+    border:solid 1px;
+    flex-direction: column;
+}
+
+
+form {
+    display:none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:50px;
+    border:1px solid black;
+    padding:10px;
+    border-radius:5px;
+    background-color: rgb(100,122,100)
+}
+
+.radioOptions {
+    display:flex;
+    margin:10px;
 }
