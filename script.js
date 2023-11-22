@@ -50,20 +50,21 @@ function addBookToLibrary() {
     function displayBook() {
     body.innerHTML=''
     ;myLibrary.forEach((book) => {
-    let para = document.createElement("p");
-    para.setAttribute("id", book.data);
-    console.log (para);
-    para.textContent = book.title + ", written by " + book.author + ", " + "pages, " + book.readStatus;
+    let bookDiv = document.createElement("div");
+    bookDiv.setAttribute("id", book.data);
+    bookDiv.classList.add("card")
+    console.log (bookDiv);
+    bookDiv.textContent = book.title + ", written by " + book.author + ", " + "pages, " + book.readStatus;
     let deleteButton = document.createElement("button");
     let toggleButton = document.createElement("button");
     deleteButton.textContent= "delete";
     toggleButton.textContent="toggle read"
-    body.appendChild(para);
-    body.appendChild(deleteButton);
-    body.appendChild(toggleButton)
+    body.appendChild(bookDiv);
+    bookDiv.appendChild(deleteButton);
+    bookDiv.appendChild(toggleButton)
     deleteButton.addEventListener("click", function() {
         myLibrary.splice("id", 1);
-        para.remove()
+        bookDiv.remove()
         deleteButton.remove()
         toggleButton.remove()
         console.log(myLibrary)
